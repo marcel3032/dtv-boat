@@ -29,8 +29,74 @@ for (face=[0:1:len(CubeFaces)-1]) {
     }
 }
 
-//intersection()
+hrubka_priecky = 0.31;
+sirka_priecky = 20;
+vyska_priecky = 10;
+dlzka_priecky = 50;
+rozostup = 4;
+
+projection(cut=true)
 {
+    union(){
+        translate([-8,20,-rozostup-0.001])
+            rotate([90,0,0])
+                priecky(false);
+        translate([-8,30,+rozostup-0.001])
+            rotate([90,0,0])
+                priecky(false);
+    }
+}
+
+projection(cut=true)
+{
+    union(){
+        translate([0,0,-0.001])
+            rotate([0,-90,0])
+                priecky(true);
+        translate([10,0,-10-0.001])
+            rotate([0,-90,0])
+                priecky(true);
+        translate([20,0,-20-0.001])
+            rotate([0,-90,0])
+                priecky(true);
+        translate([30,0,-30-0.001])
+            rotate([0,-90,0])
+                priecky(true);
+    }
+}
+
+module priecky(vrchne){
+    if(vrchne){
+        intersection() {
+            trup();
+            difference(){
+                priecne_priecky();
+                intersection(){
+                    pozdlzne_priecky();
+                    vrch();
+                }
+            }
+        }
+    }
+
+    if(!vrchne){
+        intersection() {
+            trup();
+            difference(){
+                pozdlzne_priecky();
+                intersection(){
+                    priecne_priecky();
+                    difference(){
+                        trup();
+                        vrch();
+                    }
+                }
+            }
+        }
+    }
+}
+
+module trup(){
     a = 0;
     union() {
         rotate([a,0,0])
@@ -39,16 +105,35 @@ for (face=[0:1:len(CubeFaces)-1]) {
             rotate([a,0,0])
                 polyhedron( CubePoints, CubeFaces );
     }
+}
 
-    union(){
-        hrubka_priecky = 0.5;
-        sirka_priecky = 20;
-        vyska_priecky = 10;
-        dlzka_priecky = 50;
-        rozostup = 4;
+module vrch(){
+    color("violet"){
+        rotate([0,-4,0])
+            translate([-5,-sirka_priecky/2,4])
+                cube([dlzka_priecky,sirka_priecky,vyska_priecky]);
+    }
+}
+module odlahcovaci_otvor(){
+    hull(){
+        angle = 82;
+        r = 3.1;
+        translate([5,0,vyska+2])
+            rotate([0,angle,0])
+                cylinder(40,r,r);
+        translate([5,0,vyska-2])
+            rotate([0,angle,0])
+                cylinder(40,r,r);
+    }
+}
+
+module priecne_priecky(){
+    difference() 
+    {
         translate([0,0, vyska_priecky/2-1]){
             color("blue"){
-                cube([hrubka_priecky,sirka_priecky,vyska_priecky], center=true);
+                translate([hrubka_priecky/2+0.001,0,0])
+                    cube([hrubka_priecky,sirka_priecky,vyska_priecky], center=true);
                 translate([10,0,0])
                     cube([hrubka_priecky,sirka_priecky,vyska_priecky], center=true);
                 translate([20,0,0])
@@ -56,12 +141,19 @@ for (face=[0:1:len(CubeFaces)-1]) {
                 translate([30,0,0])
                     cube([hrubka_priecky,sirka_priecky,vyska_priecky], center=true);
             }
-            color("red"){
-                translate([dlzka_priecky/2-4,-rozostup,0])
-                    cube([dlzka_priecky,hrubka_priecky,vyska_priecky], center=true);
-                translate([dlzka_priecky/2-4,+rozostup,0])
-                    cube([dlzka_priecky,hrubka_priecky,vyska_priecky], center=true);                
-            }
+        }
+        odlahcovaci_otvor();
+    }
+}
+
+module pozdlzne_priecky() {
+    translate([0,0, vyska_priecky/2-1]){
+        color("red"){
+            translate([dlzka_priecky/2-4,-rozostup,0])
+                cube([dlzka_priecky,hrubka_priecky,vyska_priecky], center=true);
+            translate([dlzka_priecky/2-4,+rozostup,0])
+                cube([dlzka_priecky,hrubka_priecky,vyska_priecky], center=true);                
         }
     }
 }
+
