@@ -26,7 +26,7 @@ Lodná skrutka je navrhnutá v programe OpenSCAD. [Zdrojový kód](propeller/pro
 List lodnej skutky má elipsový tvar a je prehnutý (`skew`). List má po celej svojej dĺžky rovnaký profil, mení sa iba jeho hĺbka.
 Profil listu je zo 4 číslnej NACA série, pre našu loď bol vybratý profil NACA 2412, t.j. prehnutý profil s 12% hrúbkou.
 List je samozrejme pre zachovanie koštantného stúpania počas celej dĺžky skrútený
-( $\alpha = atan2(S, (2*3.14159*r))$ , kde $S$ je stúpanie listu a $r$ je vzdialenosť osi otáčania).
+( $\alpha = atan2(S, 2 \pi r)$ , kde $S$ je stúpanie listu a $r$ je vzdialenosť osi otáčania).
 
 Zrejme budeme počas vývoja experimentovať s rôznymi priemermi a stúpaniami skutky.
 
