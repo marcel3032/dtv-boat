@@ -41,10 +41,10 @@ if(false){
     projection(cut=true)
     {
         union(){
-            translate([-8,20,-rozostup-0.001])
+            translate([-8,20,-rozostup+hrubka_priecky/2])
                 rotate([90,0,0])
                     priecky(false);
-            translate([-8,30,+rozostup-0.001])
+            translate([-8,30,+rozostup-hrubka_priecky/2])
                 rotate([90,0,0])
                     priecky(false);
         }
@@ -56,13 +56,16 @@ if(false){
             translate([0,0,-0.001])
                 rotate([0,-90,0])
                     priecky(true);
-            translate([10,0,-10-0.001])
+            translate([10,0,-hrubka_priecky-0.001])
                 rotate([0,-90,0])
                     priecky(true);
-            translate([20,0,-20-0.001])
+            translate([20,0,-10-0.001])
                 rotate([0,-90,0])
                     priecky(true);
-            translate([30,0,-30-0.001])
+            translate([30,0,-20-0.001])
+                rotate([0,-90,0])
+                    priecky(true);
+            translate([40,0,-30-0.001])
                 rotate([0,-90,0])
                     priecky(true);
         }
@@ -138,6 +141,8 @@ module priecne_priecky(){
             color("blue"){
                 translate([hrubka_priecky/2+0.001,0,0])
                     cube([hrubka_priecky,sirka_priecky,vyska_priecky], center=true);
+                translate([hrubka_priecky+hrubka_priecky/2+0.001,0,0])
+                    cube([hrubka_priecky,sirka_priecky,vyska_priecky], center=true);
                 translate([10,0,0])
                     cube([hrubka_priecky,sirka_priecky,vyska_priecky], center=true);
                 translate([20,0,0])
@@ -153,10 +158,11 @@ module priecne_priecky(){
 module pozdlzne_priecky() {
     translate([0,0, vyska_priecky/2-1]){
         color("red"){
-            translate([dlzka_priecky/2-4,-rozostup,0])
-                cube([dlzka_priecky,hrubka_priecky,vyska_priecky], center=true);
-            translate([dlzka_priecky/2-4,+rozostup,0])
-                cube([dlzka_priecky,hrubka_priecky,vyska_priecky], center=true);                
+            translate([hrubka_priecky,-rozostup,-vyska_priecky/2])
+                cube([dlzka_priecky,hrubka_priecky,vyska_priecky], center=false);
+            
+            translate([hrubka_priecky,+rozostup-hrubka_priecky,-vyska_priecky/2])
+                cube([dlzka_priecky,hrubka_priecky,vyska_priecky], center=false);
         }
     }
 }
