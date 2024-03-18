@@ -35,33 +35,37 @@ vyska_priecky = 10;
 dlzka_priecky = 50;
 rozostup = 4;
 
-projection(cut=true)
-{
-    union(){
-        translate([-8,20,-rozostup-0.001])
-            rotate([90,0,0])
-                priecky(false);
-        translate([-8,30,+rozostup-0.001])
-            rotate([90,0,0])
-                priecky(false);
-    }
-}
+trup();
 
-projection(cut=true)
-{
-    union(){
-        translate([0,0,-0.001])
-            rotate([0,-90,0])
-                priecky(true);
-        translate([10,0,-10-0.001])
-            rotate([0,-90,0])
-                priecky(true);
-        translate([20,0,-20-0.001])
-            rotate([0,-90,0])
-                priecky(true);
-        translate([30,0,-30-0.001])
-            rotate([0,-90,0])
-                priecky(true);
+if(false){
+    projection(cut=true)
+    {
+        union(){
+            translate([-8,20,-rozostup-0.001])
+                rotate([90,0,0])
+                    priecky(false);
+            translate([-8,30,+rozostup-0.001])
+                rotate([90,0,0])
+                    priecky(false);
+        }
+    }
+
+    projection(cut=true)
+    {
+        union(){
+            translate([0,0,-0.001])
+                rotate([0,-90,0])
+                    priecky(true);
+            translate([10,0,-10-0.001])
+                rotate([0,-90,0])
+                    priecky(true);
+            translate([20,0,-20-0.001])
+                rotate([0,-90,0])
+                    priecky(true);
+            translate([30,0,-30-0.001])
+                rotate([0,-90,0])
+                    priecky(true);
+        }
     }
 }
 
