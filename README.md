@@ -15,7 +15,7 @@ Keďže prijímač a servo je do 6V, tak ho možno budeme musieť regulovať na 
 Ovládanie kormidla zabezpečuje 3kg servo, ktoré je dvojicou bowdenov spojené s kormidlom.
 
 Chladenie motoru a regulátoru je vodné. Voda je odoberaná za lodnou skrutkou, odkiaľ je tlakom hnaná cez regulátor a následne motor.
-Pre motor sme kúpili medený vodný chladič, pre regulátor bude vyrobený z tenkej medenej/mosadznej trubky vloženej medzi rebrovanie chladiča.
+Pre motor sme kúpili medený vodný chladič, pre regulátor bude vyrobený z tenkej medenej/hliníkovej trubky vloženej medzi rebrovanie chladiča.
 
 Výkon je z motoru vedený krížovým kĺbom priamo hriadeľ s lodnou skrutkou bez prevodovky alebo redukcie.
 Hriadeľ je cez dvojicu ložísk osadená v puzdre, ktoré je vlepené do trupu lode.
