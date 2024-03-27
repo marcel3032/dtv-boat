@@ -5,12 +5,12 @@ $fs = 0.4;
 precision = 1;
 
 blades = 4;
-shaft_out_d = 9;
+shaft_out_d = 7;
 shaft_inn_d = 4;
-center_len = 15;
-center_slot_w = 4;
-center_slot_d = 4;
-radius=30;
+center_len = 12;
+center_slot_w = 3;
+center_slot_d = 3;
+radius=20;
 pitch=12;
 m=2;
 p=4;
@@ -27,15 +27,15 @@ difference() {
 
         translate([0,-center_len+4,0])
             rotate([0,90,90])
-                cylinder(center_len,shaft_out_d,shaft_out_d);
+                cylinder(center_len-1,shaft_out_d/2,shaft_out_d/2);
     };
     
     translate([0,-center_len+4,0])
         rotate([0,90,90])
-            cylinder(2*center_len+1,shaft_inn_d,shaft_inn_d, center=true);
+            cylinder(2*center_len+1,shaft_inn_d/2,shaft_inn_d/2, center=true);
     
     
     translate([0,-center_len+4+center_slot_d/2-eps,0])
         rotate([0,90,90])
-            cube([shaft_out_d*2+1, center_slot_w, center_slot_d+eps], center=true);
+            cube([shaft_out_d/2*2+1, center_slot_w, center_slot_d+eps], center=true);
 }
