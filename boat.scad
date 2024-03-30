@@ -1,7 +1,7 @@
 sirka = 8;
 dlzka = 45;
 vyska = 7.5;
-$fn = 10;
+$fn = 30;
 uhol2 = -15;
 
 CubePoints = [
@@ -31,7 +31,7 @@ for (face=[0:1:len(CubeFaces)-1]) {
     }
 }
 
-//color("red") translate([5,3.85,0]) cube(0.3);
+//color("red") translate([1.135,0,0]) circle(d=0.95);
 
 hrubka_oplastenie = 0.3;
 hrubka_priecky = 0.35;
@@ -192,7 +192,7 @@ module komponenty(){
             cylinder(5.5,d=2.2);
     translate([0,0,0.0])
         rotate([0,79.5,0])
-            cylinder(9,d=0.98);
+            cylinder(9,d=1.035);
     
     translate([4.6,-1,3.7])
         rotate([0,0,90])
