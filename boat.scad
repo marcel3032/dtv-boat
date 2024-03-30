@@ -1,16 +1,18 @@
 sirka = 8;
 dlzka = 45;
-vyska = 7;
+vyska = 7.5;
+$fn = 10;
+uhol2 = -15;
 
 CubePoints = [
-  [  0,                0,           0 ],  //0
-  [ dlzka/3,           0,           0 ],  //1
-  [ dlzka/2-2, sirka/2+2, vyska/3+0.5 ],  //2
-  [  0,        sirka/2+2, vyska/3+0.5 ],  //3
-  [  0,                0,       vyska ],  //4
-  [ dlzka,             0,       vyska ],  //5
-  [ dlzka/2+2,     sirka,       vyska ],  //6
-  [  0,            sirka,       vyska ],  //7
+  [ dlzka/12,          0,       0 ],  //0
+  [ dlzka/3+2,           0,       0 ],  //1
+  [ dlzka/2-2, sirka/2+2, vyska/3 ],  //2
+  [ dlzka/18,  sirka/2+2, vyska/3 ],  //3
+  [  0,                0,   vyska ],  //4
+  [ dlzka,             0,   vyska ],  //5
+  [ dlzka/2+2,     sirka,   vyska ],  //6
+  [  0,            sirka,   vyska ],  //7
 ];
   
 CubeFaces = [
@@ -29,73 +31,97 @@ for (face=[0:1:len(CubeFaces)-1]) {
     }
 }
 
-hrubka_priecky = 0.31;
+//color("red") translate([5,3.85,0]) cube(0.3);
+
+hrubka_oplastenie = 0.3;
+hrubka_priecky = 0.35;
 sirka_priecky = 20;
 vyska_priecky = 10;
 dlzka_priecky = 50;
-rozostup = 4;
+rozostup = 4.5;
 
-trup();
+//translate([10,0,-hrubka_oplastenie])
+//trup();
 
-if(false){
+//priecky(true);
+//priecne_priecky();
+//translate([1,0,0])
+//priecky(false);
+
+priecky_to_cut();
+//servo_priecka();
+//komponenty();
+
+module priecky_to_cut() {
     projection(cut=true)
     {
         union(){
-            translate([-8,20,-rozostup+hrubka_priecky/2])
+            translate([-8,20,(-rozostup+hrubka_priecky/2)*(sirka-2*hrubka_oplastenie)/sirka])
                 rotate([90,0,0])
                     priecky(false);
-            translate([-8,30,+rozostup-hrubka_priecky/2])
+            translate([-8,30,(+rozostup-hrubka_priecky/2)*(sirka-2*hrubka_oplastenie)/sirka])
                 rotate([90,0,0])
                     priecky(false);
         }
     }
-
     projection(cut=true)
     {
+        uhol = atan2(dlzka/12*((dlzka-2*hrubka_oplastenie)/dlzka),vyska*((vyska-2*hrubka_oplastenie)/vyska));
         union(){
-            translate([0,0,-0.001])
+            translate([0,0,-0.001-dlzka/12+hrubka_priecky])
+                rotate([0,-90+uhol,0])
+                    priecky(true);
+            translate([10,0,-0.001-dlzka/12])
+                rotate([0,-90+uhol,0])
+                    priecky(true);
+            translate([19,0,(-10-0.001-1*hrubka_priecky)*(dlzka-2*hrubka_oplastenie)/dlzka])
+                rotate([0,-90-uhol2+1,0])
+                    priecky(true);
+            translate([28,0,(-10-0.001-2*hrubka_priecky)*(dlzka-2*hrubka_oplastenie)/dlzka])
+                rotate([0,-90-uhol2+1,0])
+                    priecky(true);
+            translate([40,0,(-20-0.001)*(dlzka-2*hrubka_oplastenie)/dlzka])
                 rotate([0,-90,0])
                     priecky(true);
-            translate([10,0,-hrubka_priecky-0.001])
-                rotate([0,-90,0])
-                    priecky(true);
-            translate([20,0,-10-0.001])
-                rotate([0,-90,0])
-                    priecky(true);
-            translate([30,0,-20-0.001])
-                rotate([0,-90,0])
-                    priecky(true);
-            translate([40,0,-30-0.001])
+            translate([50,0,(-30-0.001)*(dlzka-2*hrubka_oplastenie)/dlzka])
                 rotate([0,-90,0])
                     priecky(true);
         }
     }
 }
 
+module servo_priecka(){
+    translate([4.0,0,4.75])
+        cube([4.5, (sirka-2*hrubka_oplastenie)/sirka*rozostup*2-2*hrubka_priecky, hrubka_priecky], center=true);
+}
+
 module priecky(vrchne){
-    if(vrchne){
-        intersection() {
-            trup();
-            difference(){
-                priecne_priecky();
-                intersection(){
-                    pozdlzne_priecky();
-                    vrch();
+    scale([(dlzka-2*hrubka_oplastenie)/dlzka,(sirka-2*hrubka_oplastenie)/sirka,(vyska-2*hrubka_oplastenie)/vyska]) 
+    {
+        if(vrchne){
+            intersection() {
+                trup();
+                difference(){
+                    priecne_priecky();
+                    intersection(){
+                        pozdlzne_priecky();
+                        vrch();
+                    }
                 }
             }
         }
-    }
 
-    if(!vrchne){
-        intersection() {
-            trup();
-            difference(){
-                pozdlzne_priecky();
-                intersection(){
-                    priecne_priecky();
-                    difference(){
-                        trup();
-                        vrch();
+        if(!vrchne){
+            intersection() {
+                trup();
+                difference(){
+                    pozdlzne_priecky();
+                    intersection(){
+                        priecne_priecky();
+                        difference(){
+                            trup();
+                            vrch();
+                        }
                     }
                 }
             }
@@ -121,17 +147,56 @@ module vrch(){
                 cube([dlzka_priecky,sirka_priecky,vyska_priecky]);
     }
 }
-module odlahcovaci_otvor(){
+
+module odlahcovaci_otvor(){    
     hull(){
-        angle = 82;
         r = 3.1;
-        translate([5,0,vyska+2])
+        translate([8,0,vyska+3])
+            rotate([0,90,0])
+                cylinder(5,r,r);
+        translate([8,0,vyska+1])
+            rotate([0,90,0])
+                cylinder(5,r,r);
+    }
+    hull(){
+        angle = 78;
+        r = 3.1;
+        translate([15,0,vyska+3])
             rotate([0,angle,0])
                 cylinder(40,r,r);
-        translate([5,0,vyska-2])
+        translate([15,0,vyska-2.7])
             rotate([0,angle,0])
                 cylinder(40,r,r);
     }
+}
+
+module servo3kg(){
+    color("white"){
+        translate([1,0,1.5])
+            cylinder(h=2, d=1, center=true);
+    }
+    color("grey"){
+        cube([4.1, 2.1, 3.9], center=true);
+        translate([0,0,2.68/2])
+            cube([5.4, 2.1, 0.3], center=true);
+    }
+}
+
+module komponenty(){
+    motor_z = 2.1;
+    translate([10.4+hrubka_priecky,0,motor_z])
+        rotate([0,90+uhol2,0])
+            cylinder(5.5,d=3.6);
+    translate([9,0,motor_z-0.4])
+        rotate([0,90+uhol2,0])
+            cylinder(5.5,d=2.2);
+    translate([0,0,0.0])
+        rotate([0,79.5,0])
+            cylinder(9,d=0.98);
+    
+    translate([4.6,-1,3.7])
+        rotate([0,0,90])
+            servo3kg();
 }
 
 module priecne_priecky(){
@@ -139,12 +204,19 @@ module priecne_priecky(){
     {
         translate([0,0, vyska_priecky/2-1]){
             color("blue"){
-                translate([hrubka_priecky/2+0.001,0,0])
-                    cube([hrubka_priecky,sirka_priecky,vyska_priecky], center=true);
-                translate([hrubka_priecky+hrubka_priecky/2+0.001,0,0])
-                    cube([hrubka_priecky,sirka_priecky,vyska_priecky], center=true);
+                uhol = atan2(dlzka/12,vyska);
+                translate([dlzka/12/2+0.01,0,0])
+                    rotate([0,-uhol,0])
+                        cube([hrubka_priecky,sirka_priecky,vyska_priecky], center=true);
+                translate([dlzka/12/2+0.01+hrubka_priecky,0,0])
+                    rotate([0,-uhol,0])
+                        cube([hrubka_priecky,sirka_priecky,vyska_priecky], center=true);
+                translate([10-hrubka_priecky,0,0])
+                    rotate([0,uhol2,0])
+                        cube([hrubka_priecky,sirka_priecky,vyska_priecky], center=true);
                 translate([10,0,0])
-                    cube([hrubka_priecky,sirka_priecky,vyska_priecky], center=true);
+                    rotate([0,uhol2,0])
+                        cube([hrubka_priecky,sirka_priecky,vyska_priecky], center=true);
                 translate([20,0,0])
                     cube([hrubka_priecky,sirka_priecky,vyska_priecky], center=true);
                 translate([30,0,0])
@@ -152,17 +224,22 @@ module priecne_priecky(){
             }
         }
         odlahcovaci_otvor();
+        komponenty();
     }
 }
 
 module pozdlzne_priecky() {
-    translate([0,0, vyska_priecky/2-1]){
+    //translate([0,0, vyska_priecky/2-1])
+    {
         color("red"){
-            translate([hrubka_priecky,-rozostup,-vyska_priecky/2])
-                cube([dlzka_priecky,hrubka_priecky,vyska_priecky], center=false);
+            uhol = atan2(dlzka/12,vyska);
+            translate([hrubka_priecky+vyska_priecky*1.5/2+dlzka/12,-rozostup,-vyska_priecky*1.5])
+                rotate([0,-uhol,0])
+                    cube([dlzka_priecky,hrubka_priecky,vyska_priecky*3], center=false);
             
-            translate([hrubka_priecky,+rozostup-hrubka_priecky,-vyska_priecky/2])
-                cube([dlzka_priecky,hrubka_priecky,vyska_priecky], center=false);
+            translate([hrubka_priecky+vyska_priecky*1.5/2+dlzka/12,+rozostup-hrubka_priecky,-vyska_priecky*1.5])
+                rotate([0,-uhol,0])
+                    cube([dlzka_priecky,hrubka_priecky,vyska_priecky*3], center=false);
         }
     }
 }

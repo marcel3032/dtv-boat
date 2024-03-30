@@ -2,7 +2,7 @@ use <blade.scad>
 
 $fa = 1;
 $fs = 0.4;
-precision = 1;
+precision = 2;
 
 blades = 4;
 shaft_out_d = 7;
