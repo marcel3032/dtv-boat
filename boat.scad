@@ -40,15 +40,34 @@ vyska_priecky = 10;
 dlzka_priecky = 50;
 rozostup = 4.5;
 
-//translate([10,0,-hrubka_oplastenie])
-//trup();
+/*
+projection(){
+    scale([1,,1])
+    difference(){
+        cube([77,50,1]);
+        translate([10,15,0])cube([40,20,1]);
+    }
+}
+*/
 
-//priecky(true);
+//translate([10,0,-hrubka_oplastenie])
+
+d = 12;
+//projection() 
+    //scale([9.9,9.4,10]){
+        difference(){
+            trup();
+            translate([20,0,0])cylinder(20,d=d);
+            translate([30/2-d+2,0,0])cube([30,d,30], center=true);
+        }
+    //}
+
+priecky(true);
 //priecne_priecky();
 //translate([1,0,0])
-//priecky(false);
+priecky(false);
 
-priecky_to_cut();
+//scale([10,10,10]) priecky_to_cut();
 //servo_priecka();
 //komponenty();
 
@@ -176,20 +195,31 @@ module servo3kg(){
             cylinder(h=2, d=1, center=true);
     }
     color("grey"){
-        cube([4.1, 2.1, 3.9], center=true);
+        cube([4.1, 2.0, 3.6], center=true);
         translate([0,0,2.68/2])
-            cube([5.4, 2.1, 0.3], center=true);
+            cube([5.4, 2.0, 0.3], center=true);
     }
 }
 
 module komponenty(){
     motor_z = 2.1;
+    // telo motora
     translate([10.4+hrubka_priecky,0,motor_z])
         rotate([0,90+uhol2,0])
             cylinder(5.5,d=3.6);
+    // okolo osky
     translate([9,0,motor_z-0.4])
         rotate([0,90+uhol2,0])
-            cylinder(5.5,d=2.2);
+            cylinder(5.5,d=1.45);
+    
+    // srouby
+    translate([9,1.25,motor_z-0.4])
+        rotate([0,90+uhol2,0])
+            cylinder(5.5,d=0.3);
+    translate([9,-1.25,motor_z-0.4])
+        rotate([0,90+uhol2,0])
+            cylinder(5.5,d=0.3);
+    
     translate([0,0,0.0])
         rotate([0,79.5,0])
             cylinder(9,d=1.035);
