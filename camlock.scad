@@ -1,17 +1,17 @@
 $fn=25;
 big_e = 0.3;
 
-h=11;
+h=13.5;
 h2=6;
 d=10;
 d2=d+4;
 d_cube=2*h;
-thickness = 2.5;
+thickness = 2.8+1.2;
 pin_d = 3;
 pin_offset = h-2*thickness-pin_d;
 
-//camlock();
-camlock_housing();
+camlock();
+//camlock_housing();
 
 /*
 difference(){
