@@ -11,7 +11,7 @@ ship_back_angle = 26.5;
 
 axis_diameter = 3.4;
 axis_offset = 3;
-axis_lenght = 40;
+axis_length = 40;
 axis_over = 5;
 
 axis_cap_height = 8;
@@ -260,9 +260,9 @@ module plate() {
 }
 
 module axis() {
-    translate([arm_length, 0, axis_lenght])
+    translate([arm_length, 0, axis_length])
     rotate([180, 0, 0])
-    cylinder(h=axis_lenght*2, r=axis_diameter/2);
+    cylinder(h=axis_length*2, r=axis_diameter/2);
 }
 
 //axis();
