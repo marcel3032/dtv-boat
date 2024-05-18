@@ -267,7 +267,7 @@ module axis() {
 
 //axis();
 
-/*
+
 difference()
 {
     rudder();
@@ -292,7 +292,6 @@ difference()
         circle(d=pipe_d);
     }
 }
-*/
 
-//arm();
+arm();
 plate();

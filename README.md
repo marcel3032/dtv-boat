@@ -31,8 +31,16 @@ List je samozrejme pre zachovanie koštantného stúpania počas celej dĺžky s
 
 Zrejme budeme počas vývoja experimentovať s rôznymi priemermi, stúpaniami skutky a profilmi.
 
+*Profil NACA 2412:*
+
 ![Profil NACA 2412](images/foil.png)
+
+*Jeden list:*
+
 ![Jeden list](images/blade.png)
+
+*Kompletná lodná skrutka aj s nábojom:*
+
 ![Kompletná lodná skrutka aj s nábojom](images/propeller.png)
 
 ## Trup lode
@@ -46,8 +54,16 @@ Opláštenie lode je z 1.5mm hrubej preglejky rezanej na laseri.
 Trup lode je opäť navrhnutý v OpenSCADe a tvary priečok sú vyexportované priamo z tohoto programu.
 [Zdrojový kód](boat.scad) je tiež v repozitári.
 
+*Trup lode:*
+
 ![Trup lode](images/boat.png)
+
+*Priečky v lodi:*
+
 ![Priečky v lodi](images/priecky.png)
+
+*Priečky pripravené na rezanie:*
+
 ![Priečky pripravené na rezanie](images/to_cut.png)
 
 Opláštenie lode nie je priamo z OpenSCADu.
@@ -67,25 +83,70 @@ Vstup tohoto kanálu je otočený smerom k lodnej skrutke, aby tlačila vodu cez
 Z výstupu vodného kanála na vrchnej časti lode je voda odvádzaná umelohmotnou hadičkou ďalej do trupu lode.
 Na vrchnej časti kormidla sa nachádzajú páky riadenia.
 
+*Konzola kormidla aj s kormidlom (v zadnej časti kormidla je viditeľný kanál na chladiacu vodu):*
+
+![Konzola kormidla aj s kormidlom (v zadnej časti kormidla je viditeľný kanál na chladiacu vodu)](images/rudder.png)
+
 ## Stavba lode
 
 Stavba lode začala narezaním potrebných dielov na laserovej rezačke.
 Následne boli zlepené vnútorné priečky lode a vlepený hriadeľ a opláštenie lode.
+
+*Vnútorné priečky:*
+
+![Vnútorné priečky)](images/priecky.jpg)
+
 Do lode bol osadený motor a urobené lôžko na servo priečku.
+
+*Detail kardanového kĺbu, motoru v silentblokoch a hranolčekoch pod servo priečku:*
+
+![Detail kardanového kĺbu, motoru v silentblokoch a hranolčekoch pod servo priečku)](images/kardan-motor.jpg)
+
 Stavba lode pokračovala prilepením horného opláštenia.
 Týmto bola stavba drevenej konštrukcie lode hotová.
 
+*Opláštená loďka:*
+
+![Opláštená loďka)](images/oplastena-lod.jpg)
+
 Pokračovali sme olamimnovaním celého trupu lode dvomi vrstvami sklenej tkaniny gramáže $80 g/m^2$.
 Laminovali sme epoxidovou živicou L285.
+
+*Laminovanie:*
+
+![Laminovanie)](images/laminovanie.jpg)
+
 Pri hranách, kde pod tkaninou vznikli bubliny sme ich odbrúsili a tieto miesta prelaminovali opäť.
 Nasledovala povrchová úprava trupu.
 Trup bol najprv vytmelený polyesterovým tmelom (gitom) a namokro prebrúsený.
+
+*Vygitovaný trup:*
+
+![Vygitovaný trup)](images/git.jpg)
+
 Následne bol trup nastriekaný plničom.
+
+*Trup nastriekaný plničom:*
+
+![Trup nastriekaný plničom)](images/plnic.jpg)
+
 Po finálnom mokrom prebrúsení bol trup nastriekaný vrchnou farbou.
 Ako kamufláž bola zvolená bola modro-ružová farebná kombinácia (RAL 5002, RAL 4003).
 
+*Kamufláž lode:*
+
+![Kamufláž lode)](images/kamuflaz.jpg)
+
 Paralelene s dokončovaním trupu prebiehal návrh a tlač kormidla a konzoly kormidla.
 Boli tiež vytlačené vrchné kryty lode a lodná skrutka.
+
+*Vytlačené kormidlo:*
+
+![Vytlačené kormidlo)](images/kormidlo.jpg)
+
+*Výsledná loďka bez jedného vrchného krytu:*
+
+![Výsledná loďka bez jedného vrchného krytu)](images/lodka.jpg)
 
 ## Testy lode a skúsenosti z používania
 
