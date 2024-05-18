@@ -54,33 +54,35 @@ projection(){
 
 //translate([10,0,-hrubka_oplastenie])
 
-    scale([9.9,9.4,10])
-translate([0,-sirka,0])cube([2, sirka*2, vyska]);
+// scale([9.9,9.4,10]) translate([0,-sirka,0])cube([2, sirka*2, vyska]);
 
-d = 12;
+/*d = 12;
 //projection() 
     scale([9.9,9.4,10]){
         difference(){
-            union(){
-                //trup();
-                
-            }
-            translate([20,0,0])cylinder(20,d=d);
-            translate([30/2-d+2,0,0])cube([30,d,30], center=true);
+            //trup();
+            //translate([20,0,0])cylinder(20,d=d);
+            //translate([30/2-d+2,0,0])cube([30,d,30], center=true);
         }
     }
-
+*/
 
 //rotate([0,0,180])translate([-74/2-7-5,0,vyska*10-2.8]) back_cover_base();
 
+rotate([0,90,0]) trup();
+
 scale([10,10,10]){
-    priecky(true);
+    //priecky(true);
     //priecne_priecky();
     //translate([1,0,0])
-    priecky(false);
+    //priecky(false);
 }
+//priecky(true);
+//priecne_priecky();
+//translate([1,0,0])
+//priecky(false);
 
-//scale([10,10,10]) priecky_to_cut();
+scale([10,10,10]) priecky_to_cut();
 //servo_priecka();
 //komponenty();
 

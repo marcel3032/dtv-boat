@@ -4,15 +4,15 @@ oversize = 7;
 thickness = 2.8;
 big_eps = 0.5;
 
-$fn=250;
+$fn=25;
 
 d = 12;
 
 cube_d = 24.5-7.45-d/2;
 
 translate([0,0,--(thickness+1)]){
-    top_front();
-    //translate([80,0,1])rotate([0,0,180])shield();
+    //top_front();
+    translate([80,0,1])rotate([0,0,180])shield();
 }
 
 module shield(){

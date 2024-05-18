@@ -1,14 +1,14 @@
 $fn=25;
 big_e = 0.3;
 
-h=13.5;
+h=17;
 h2=6;
 d=10;
 d2=d+4;
 d_cube=2*h;
-thickness = 2.8+1.2;
-pin_d = 3;
-pin_offset = h-2*thickness-pin_d;
+thickness = 2.8+0*1.2;
+pin_d = 3.2;
+pin_offset = h-2*thickness-pin_d-2.2;
 
 camlock();
 //camlock_housing();
